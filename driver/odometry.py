@@ -7,15 +7,15 @@ from tf.transformations import euler_from_quaternion
 
 
 class Odometer(object):
-    '''
-    Keeps track of the current position and orientation with respect to
-    the initial position and orientation of the turtlebot.
-    Also supports a stopwatch-like functionality for measuring travelled
-    distance or angle.
+    
+    #Keeps track of the current position and orientation with respect to
+    #the initial position and orientation of the turtlebot.
+    #Also supports a stopwatch-like functionality for measuring travelled
+    #distance or angle.
 
-    IMPORTANT: Make sure a ROS node has has been initialised before
-    instantiating this class.
-    '''
+    #IMPORTANT: Make sure a ROS node has has been initialised before
+    #instantiating this class.
+    
    
     def __init__(self):
         self.current_pos = (0, 0)
@@ -37,29 +37,28 @@ class Odometer(object):
 
 
     def calc_dist(self, pos1, pos2):
-        '''Calculate the distance between two 2d points given as tuples.'''
+        #Calculate the distance between two 2d points given as tuples.
 
         return math.hypot(pos1[0] - pos2[0], pos1[1] - pos2[1])
     
 
     def reset(self):
-        '''Starts the stop watch for measuring travelled distance and angle'''
+        #Starts the stop watch for measuring travelled distance and angle
 
         self._start_pos = self.current_pos
         self._start_ori = self.current_ori
            
     def get_travelled_dst(self):
-        '''Returns the absolute value of the linear displacement since the last time reset() was called'''
+        #Returns the absolute value of the linear displacement since the last time reset() was called
 
         return self.calc_dist(self._start_pos, self.current_pos)
 
     def get_travelled_angle(self, anti_cw):
-        '''
-        Returns the value of angular displacement since the last time reset() was called.
-        Returns values in the intervals [0, 2*pi) for clockwise angles and [0, -2*pi) for negative angles.
+        #Returns the value of angular displacement since the last time reset() was called.
+        #Returns values in the intervals [0, 2*pi) for clockwise angles and [0, -2*pi) for negative angles.
 
-        The parameter anti_cw should be set to True if the turn was anti-clockwise and false otherwise.
-        '''
+        #The parameter anti_cw should be set to True if the turn was anti-clockwise and false otherwise.
+        
         
         # we have to be careful when the turtlebot passes the orientation of pi,
         # where it changes to -pi.
