@@ -23,14 +23,14 @@ class Driver(object):
     curr_speed = 0.0
     
     def __init__(self):
-        rospy.init_node(u'findo_driver', anonymous=True)
+        rospy.init_node("findo_driver", anonymous=True)
         rospy.on_shutdown(self.end_driving)
 
         self.odometer = Odometer()
   
         self._stop_event = threading.Event()
         
-        self.cmd_vel_pub = rospy.Publisher(u'cmd_vel', Twist, queue_size=10)
+        self.cmd_vel_pub = rospy.Publisher("cmd_vel", Twist, queue_size=10)
         sleep(1) # some time is necessary for the Publisher to register with the topic
 
     def rotate_speed(self, initang, currang): #Used to calculate the correction needed to continue straight
